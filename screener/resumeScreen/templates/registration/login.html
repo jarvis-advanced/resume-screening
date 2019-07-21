@@ -1,0 +1,23 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active"> Sign In </h2>
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="{% static 'image/user.jpeg' %}" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form method="POST" action="">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<p>Don't have an account? Create <a href="{% url 'signup' %}">Now</a></p>
+		<button type='login' class="btn btn-outline-success" style="width:20%;">Login</button>
+									
+	</form>
+  </div>
+</div>

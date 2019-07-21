@@ -1,4 +1,4 @@
-{% load  static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,23 +13,27 @@
     <title>Resume Screening</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link  rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
     
 
     <!-- Custom Fonts -->
-    <link href="{% staic 'vendor/font-awesome/css/font-awesome.min.css' %"} rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{%  staic 'vendor/font-awesome/css/font-awesome.min.css' %"} type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
-    <link href="{% static 'vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'vendor/magnific-popup/magnific-popup.css' %}" >
 
     <!-- Theme CSS -->
-    <link href="{% static 'css/creative.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/creative.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/creative.css' %}" >
+
+     <link rel="stylesheet" href="{% static 'css/main.css' %}" >
 
 </head>
 
 <body id="page-top">
+</div>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -44,14 +48,27 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <li>{% if user.is_authenticated  %}
+                        <a style="pointer-events: none;text-transform: capitalize;font-weight: bold;font-size: 16px;color:black;">
+                            Welcome, {{user.username}}
+                        </a>
+                        {% endif %}
+				    </li>
                     <li>
                         <a class="page-scroll" href="#about" style="color:black; font-size:16px;">About</a>
                     </li>
-                 
-                    <li>
-                        <a href="login/login.html" style="color:black; font-size:16px;">Login</a>
-                    </li> 
 
+                     {% if user.is_authenticated %}
+                        <li>
+                            <a style="color:black; font-size:16px;" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a style="color:black; font-size:16px;" href="{% url 'login' %}">Login</a>
+                        </li>
+                    {% endif %}
+				
+                 
                 </ul>
             </div>
 
