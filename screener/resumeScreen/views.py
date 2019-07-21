@@ -8,6 +8,8 @@ from django.conf import settings
 import logging
 from django.http import HttpResponse, Http404
 
+from resumeScreen.forms import UserSignupForm
+
 # Landing page
 def index(request):
 
@@ -16,3 +18,22 @@ def index(request):
 @login_required
 def home(request):
     return render(request,"home.html")
+
+def user_registration(request):
+	if request.method == 'POST':
+		form=UserSignupForm(request.POST)
+		if form.is_valid():
+			form.save()
+		
+		messages.success(request,"Account Created Successfully")
+		print(request.FILES.getlist("file"))
+		return redirect('home')
+		
+	else:
+		form = UserSignupForm()
+	
+	return render(request,'registration/signup.html',{'form':form})
+
+@login_required
+def uploadDes(request):
+    
