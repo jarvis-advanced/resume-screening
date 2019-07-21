@@ -89,9 +89,9 @@
                   <div style="color:black;">
                     <form id="upload-form" method="POST" enctype="multipart/form-data">
 							{% csrf_token%}
-							{{ form1.as_p }}
+							{% comment %} {{ form1.as_p }} {% endcomment %}
 
-                            {{ form2.as_p }}
+                            {{ form1.as_p }}
 							<button type="submit" style="margin-top:2%;">Submit</button>
 									
 						</form>

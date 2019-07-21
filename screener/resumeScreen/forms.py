@@ -28,9 +28,9 @@ class UserSignupForm(forms.ModelForm):
 class UploadDes(forms.ModelForm):
 	class Meta:
 		model = UploadResume
-		fields = ['job_des']
+		fields = ['job_des','job_resume']
 
-class UploadRes(forms.ModelForm):
-	class Meta:
-		model = UploadResume
-		fields = ['job_resume']
+# class UploadRes(forms.ModelForm):
+# 	class Meta:
+# 		model = UploadResume
+# 		fields = ['job_resume']
