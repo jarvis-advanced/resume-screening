@@ -8,16 +8,38 @@ from django.conf import settings
 import logging
 from django.http import HttpResponse, Http404
 
-from resumeScreen.forms import UserSignupForm
+from .models import  UploadResume
+from resumeScreen.forms import UserSignupForm,UploadDes,UploadRes
 
 # Landing page
 def index(request):
 
-	return render(request, 'index.html',)
+	showAll= UploadResume.objects.filter(name=request.user)
 
-@login_required
-def home(request):
-    return render(request,"home.html")
+	form1 = UploadDes()
+	form2 = UploadRes()
+	if request.method == "POST":
+		
+		form1 = UploadDes(request.POST, request.FILES,prefix="form1")
+		form2 = UploadRes(request.POST, request.FILES,prefix="form2")
+		
+		if form1.is_valid() and form2.is_valid():
+			des = form1.save(commit=False)
+			res = form2.save(commit=False)
+			des.name = request.user
+			res.name = request.user
+			des.save()
+			res.save()
+			return redirect('index')
+
+		else:
+			form1 = UploadDes()
+			form2 = uploadRes()
+
+	context_dict = {
+		'form1' : form1,
+		'form2':form2,}
+	return render(request,"index.html",context_dict)
 
 def user_registration(request):
 	if request.method == 'POST':
@@ -27,7 +49,7 @@ def user_registration(request):
 		
 		messages.success(request,"Account Created Successfully")
 		print(request.FILES.getlist("file"))
-		return redirect('home')
+		return redirect('index')
 		
 	else:
 		form = UserSignupForm()
@@ -36,4 +58,23 @@ def user_registration(request):
 
 @login_required
 def uploadDes(request):
-    
+	
+	showAll= UploadImage.objects.filter(name=request.user)
+
+	form = UploadDes()
+	if request.method == "POST":
+		
+		form = UploadDes(request.POST, request.FILES)
+		if form.is_valid():
+			des = form.save(commit=False)
+			des.name = request.user
+			des.save()
+			return redirect('upload')
+
+		else:
+			form = UploadDes()
+
+	context_dict = {
+		'form' : form,
+		'showAll':showAll,}
+	return render(request,"index.html",context_dict)
