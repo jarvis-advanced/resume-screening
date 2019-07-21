@@ -21,15 +21,15 @@ def index(request):
 	if request.method == "POST":
 		
 		form1 = UploadDes(request.POST, request.FILES,prefix="form1")
-		# form2 = UploadRes(request.POST, request.FILES,prefix="form2")
+		form2 = UploadRes(request.POST, request.FILES,prefix="form2")
 
-		if form1.is_valid():
+		if form1.is_valid() or form2.is_valid():
 			des = form1.save(commit=False)
-			# res = form2.save(commit=False)
+			res = form2.save(commit=False)
 			des.name = request.user
-			# res.name = request.user
+			res.name = request.user
 			des.save()
-			# res.save()
+			res.save()
 			return redirect('index')
 
 		else:
@@ -56,25 +56,25 @@ def user_registration(request):
 	
 	return render(request,'registration/signup.html',{'form':form})
 
-@login_required
-def uploadDes(request):
+# @login_required
+# def uploadDes(request):
 	
-	showAll= UploadImage.objects.filter(name=request.user)
+# 	showAll= UploadImage.objects.filter(name=request.user)
 
-	form = UploadDes()
-	if request.method == "POST":
+# 	form = UploadDes()
+# 	if request.method == "POST":
 		
-		form = UploadDes(request.POST, request.FILES)
-		if form.is_valid():
-			des = form.save(commit=False)
-			des.name = request.user
-			des.save()
-			return redirect('upload')
+# 		form = UploadDes(request.POST, request.FILES)
+# 		if form.is_valid():
+# 			des = form.save(commit=False)
+# 			des.name = request.user
+# 			des.save()
+# 			return redirect('upload')
 
-		else:
-			form = UploadDes()
+# 		else:
+# 			form = UploadDes()
 
-	context_dict = {
-		'form' : form,
-		'showAll':showAll,}
-	return render(request,"index.html",context_dict)
+# 	context_dict = {
+# 		'form' : form,
+# 		'showAll':showAll,}
+# 	return render(request,"index.html",context_dict)
