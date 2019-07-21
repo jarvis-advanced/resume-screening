@@ -1,4 +1,4 @@
-{% load static %}
+{{% load static %}
 {% load crispy_forms_tags %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
@@ -15,7 +15,7 @@
     <form method="post">
       {% csrf_token %}
       {{ form|crispy }}
-      <button type='login' class="btn btn-outline-success" style="width:20%;">Sign Up</button>
+      <button type='login' class="btn btn-outline-success" style="width:20%;height:5%;background: skyblue; border:0ch;margin-bottom:8px;">Login</button>
     </form>
   </div>
 </div>
