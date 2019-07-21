@@ -85,12 +85,23 @@
                 <h1 id="home-heading" class="main_text" style="color:black; font-size: 30px">
                     Resume Screening is the best thing to select employees</h1>
                     <br><br><br>
-                    <label for="fusk" class="btn btn-primary btn-xl page-scroll" style="color:black; font-size:15px;">Upload Resume</label>
-  					<input id="fusk" type="file" name="Upload Resume" accept=".pdf" multiple style="display: none;" >
+                  {% comment %} <label for="fusk" class="btn btn-primary btn-xl page-scroll" style="color:black; font-size:15px;">Upload Resume</label> {% endcomment %}
+                  <div style="color:black;">
+                    <form id="upload-form" method="POST" enctype="multipart/form-data">
+							{% csrf_token%}
+							{{ form1.as_p }}
 
-  					<label for="dusk" class="btn btn-primary btn-xl page-scroll" style="color:black; font-size:15px;">Upload Requirement</label>
+                            {{ form2.as_p }}
+							<button type="submit" style="margin-top:2%;">Submit</button>
+									
+						</form>
+
+                </div>
+  					{% comment %} <input id="fusk" type="file" name="Upload Resume" accept=".pdf" multiple style="display: none;" > {% endcomment %}
+
+  					{% comment %} <label for="dusk" class="btn btn-primary btn-xl page-scroll" style="color:black; font-size:15px;">Upload Requirement</label>
   					<input id="dusk" type="file" name="Upload Requirement" accept=".pdf" style="display: none;" >
-                    <input type="Submit" name="Submit" class="btn btn-primary btn-xl page-scroll" style="color:black; font-size:15px;">
+                    <input type="Submit" name="Submit" class="btn btn-primary btn-xl page-scroll" style="color:black; font-size:15px;"> {% endcomment %}
             </div>
         </div>
     </header>

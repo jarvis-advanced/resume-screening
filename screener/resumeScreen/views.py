@@ -21,20 +21,20 @@ def index(request):
 	if request.method == "POST":
 		
 		form1 = UploadDes(request.POST, request.FILES,prefix="form1")
-		form2 = UploadRes(request.POST, request.FILES,prefix="form2")
-		
-		if form1.is_valid() and form2.is_valid():
+		# form2 = UploadRes(request.POST, request.FILES,prefix="form2")
+
+		if form1.is_valid():
 			des = form1.save(commit=False)
-			res = form2.save(commit=False)
+			# res = form2.save(commit=False)
 			des.name = request.user
-			res.name = request.user
+			# res.name = request.user
 			des.save()
-			res.save()
+			# res.save()
 			return redirect('index')
 
 		else:
-			form1 = UploadDes()
-			form2 = uploadRes()
+			form1 = UploadDes(prefix="form1")
+			# form2 = uploadRes(prefix = "form2")
 
 	context_dict = {
 		'form1' : form1,
