@@ -1,4 +1,5 @@
 {% load static %}
+{% load staticfiles %}
 {% load crispy_forms_tags %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
@@ -12,12 +13,16 @@
     </div>
 
     <!-- Login Form -->
+    <div class="form_style ">
     <form method="POST" action="">
 		{% csrf_token %}
-		{{ form|crispy }}
-		<p>Don't have an account? Create <a href="{% url 'signup' %}">Now</a></p>
-		<button type='login' class="btn btn-outline-success" style="width:20%;">Login</button>
-									
-	</form>
+    {{ form|crispy }}
+    <div>
+    <p style="color:red;">Don't have an account?</p>
+       <p><a href="{% url 'signup' %}" style="color:blue;"> Create Now</a></p>
+    </div>
+    <button type='login' class="btn btn-outline-success" style="width:20%;height:5%;background: skyblue; border:0ch;margin-bottom:5px;">Login</button>
+		</div>							
+  </form>
   </div>
 </div>
