@@ -44,7 +44,7 @@ SpeechRecognition==3.6.3
 textract==1.6.1
 textsearch==0.0.17
 Unidecode==1.1.1
-urllib3==1.25.3
+urllib3==1.26.5
 Werkzeug==0.15.5
 xlrd==1.0.0
 XlsxWriter==1.1.8
